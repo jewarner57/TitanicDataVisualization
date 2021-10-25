@@ -1,5 +1,3 @@
-import data from './titanic-data.js'
-
 // Get a reference to the #titanic
 const titanic = document.querySelector('#titanic')
 
@@ -21,9 +19,11 @@ passengers.forEach(p => {
 
 // Let's loop over each passenger and set some styles 
 passengers.forEach((p, i) => {
+  const passenger = data[i].fields
+
   p.style.width = '10px'
   p.style.height = '10px'
-  p.style.backgroundColor = '#000'
+  p.style.backgroundColor = passenger.sex === 'male' ? '#89CFF0' : "#f4c2c2"
 })
 
 // Challenges - 
