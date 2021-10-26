@@ -1,11 +1,17 @@
 // Get a reference to the #titanic
 const titanic = document.querySelector('#titanic')
+const pageWrapper = document.querySelector('#pageWrapper')
+
+// Set page wrapper styles
+pageWrapper.style.width = '100%'
 
 // Set some styles on the titanic
 // display flex, justifyContent center, alignItems flex-end
-titanic.style.display = 'grid'
-titanic.style.gridTemplateColumns = 'repeat(20, 10px)'
-titanic.style.gridGap = '1px'
+titanic.style.margin = 'auto'
+titanic.style.display = 'flex'
+titanic.style.flexDirection = 'row'
+titanic.style.flexWrap = 'wrap'
+titanic.style.maxWidth = '400px'
 
 // Map over the data and make a new element for each passenger
 const passengers = data.map(p => {
@@ -19,39 +25,16 @@ passengers.forEach(p => {
 
 // Let's loop over each passenger and set some styles 
 passengers.forEach((p, i) => {
-  const passenger = data[i].fields
+  const { fare, name, embarked, pclass, sex, survived } = data[i].fields
+  const embarkedColorMap = { 'S': '#324376', 'C': '#F76C5E', 'Q': '#F4CC48' }
 
-  p.style.width = '10px'
-  p.style.height = '10px'
-  p.style.backgroundColor = passenger.sex === 'male' ? '#89CFF0' : "#f4c2c2"
+  p.style.margin = '0.5px'
+  p.style.width = '15px'
+  p.style.height = '15px'
+  p.style.backgroundColor = embarkedColorMap[embarked]
+  p.style.borderRadius = sex === 'male' ? '0' : '50%'
+  p.style.opacity = survived === 'Yes' ? '1' : '0.5'
 })
-
-// Challenges - 
-
-// Make the squares a little bigger 15px by 15px. 
-// You'll need to change both the gridTemplateColumn on the
-// titanic and the width and height of each passenger. 
-
-
-
-// Change the number of columns on the titanic to 34
-
-
-// Display each passenger as a circle if they are female. 
-// Do this by setting the borderRadius of each passenger. 
-// Match the passenger in passengers to the object data 
-// in the data array by the index. 
-
-
-
-// Display each passengers who did not survive as 
-// opacity 0.5. 
-
-
-
-// Set the backgroundColor of each passenger by their 
-// embarked value. There are three possible values: 
-// 'S', 'C', and 'Q'
 
 
 
