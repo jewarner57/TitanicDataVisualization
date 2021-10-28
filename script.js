@@ -71,6 +71,10 @@ function selectChanged(e) {
   displayData(filteredData)
 }
 
+function displayPassengerData(e) {
+  console.log(e.target.passengerData)
+}
+
 /* Build the person list graphic */
 
 function displayData(passengerData) {
@@ -84,8 +88,6 @@ function displayData(passengerData) {
     const { fare, name, embarked, pclass, sex, survived, age } = passengerData[i].fields
     const embarkedColorMap = { 'S': '#4462b9', 'C': '#F76C5E', 'Q': '#F4CC48' }
 
-    // p.innerHTML = name
-
     p.style.margin = '0.5px'
     p.style.width = '15px'
     p.style.height = '15px'
@@ -95,6 +97,9 @@ function displayData(passengerData) {
     p.style.textAlign = 'center'
     p.style.padding = pclass === 1 ? '5px' : '7px'
     p.style.border = pclass === 1 ? '2px solid black' : ''
+
+    p.passengerData = { fare, name, embarked, pclass, sex, survived, age }
+    p.addEventListener('click', displayPassengerData)
   })
 }
 
@@ -119,10 +124,10 @@ function filterData(filterBy, data) {
     case 'embarked':
       // Embarked Location: Top to bottom: S, C, Q
       filteredData.sort((a, b) => {
-        const embarkedColorMap = { 'S': 1, 'C': 2, 'Q': 3 }
-        const aVal = embarkedColorMap[a.fields.embarked]
-        const bVal = embarkedColorMap[b.fields.embarked]
-        console.log(embarkedColorMap === undefined ? "undefined" : '')
+        const embarkedColorMap = { 'S': 10, 'C': 20, 'Q': 30 }
+        const aVal = embarkedColorMap[a.fields.embarked] || '40'
+        const bVal = embarkedColorMap[b.fields.embarked] || '40'
+
         return aVal - bVal
       })
       break;
@@ -131,9 +136,9 @@ function filterData(filterBy, data) {
       filteredData.sort((a, b) => a.fields.survived === 'Yes' ? -1 : 1)
       break;
     case 'class':
-      // Embarked Location: Top to bottom: S, C, Q
+      // Class top to bottom
       filteredData.sort((a, b) => {
-        return a.fields.class - b.fields.class
+        return Number(a.fields.pclass) - Number(b.fields.pclass)
       })
       break;
     default:
