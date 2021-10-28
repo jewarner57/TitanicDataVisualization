@@ -88,6 +88,8 @@ function displayData(passengerData) {
     const { fare, name, embarked, pclass, sex, survived, age } = passengerData[i].fields
     const embarkedColorMap = { 'S': '#4462b9', 'C': '#F76C5E', 'Q': '#F4CC48' }
 
+    p.innerHTML = age < 1 ? "<1" : Math.round(age) || "-"
+
     p.style.margin = '0.5px'
     p.style.width = '15px'
     p.style.height = '15px'
@@ -95,7 +97,7 @@ function displayData(passengerData) {
     p.style.borderRadius = sex === 'male' ? '0' : '50%'
     p.style.opacity = survived === 'Yes' ? '1' : '0.3'
     p.style.textAlign = 'center'
-    p.style.padding = pclass === 1 ? '5px' : '7px'
+    p.style.padding = pclass === 1 ? '7px' : '9px'
     p.style.border = pclass === 1 ? '2px solid black' : ''
 
     p.passengerData = { fare, name, embarked, pclass, sex, survived, age }
