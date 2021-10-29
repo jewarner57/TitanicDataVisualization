@@ -9,21 +9,41 @@
 </head>
 
 <body>
-
   <div id="pageWrapper">
     <div id="filterControls">
+      <div class="titleBox">
+        <h1>Titanic Data Visualization</h1>
+        <p>A visualization of data from the titanic incident</p>
+      </div>
       <button id="addFilter">New Filter</button>
       <div id="filterList">
         <select name="filterBy" id="filterBy">
+          <option value="survived">Survived</option>
+          <option value="class">Class</option>
           <option value="age">Age</option>
           <option value="fare">Fare</option>
           <option value="sex">Sex</option>
-          <option value="survived">Survived</option>
           <option value="embarked">Embarked Location</option>
-          <option value="class">Class</option>
         </select>
       </div>
       <button id="removeFilter">Remove Filter</button>
+      <div class="detailContainer">
+        <h3>Selected Passenger:</h3>
+        <div id="passengerDetail">Select a passenger by clicking any shape</div>
+      </div>
+      <div class="detailContainer">
+        <h3>Info Key:</h3>
+        <p><b>Survival:</b> Passengers who died are transparent</p>
+        <p><b>Class:</b> First class passengers have a black border</p>
+        <p><b>Sex:</b> Squares are Men, Circles are Women</p>
+        <p><b>Age:</b> age appears inside each shape.</p>
+        <p><b>Embarked Location:</b></p>
+        <ul>
+          <li><span class="blue">Blue:</span> Southampton, England</li>
+          <li><span class="red">Red:</span> Cherbourg, France</li>
+          <li><span class="yellow">Yellow:</span> Queenstown, Ireland</li>
+        </ul>
+      </div>
     </div>
     <div>
       <div id="titanic"></div>
