@@ -25,6 +25,10 @@ ul {
   line-height: 25px;
 }
 
+.blue, .red, .yellow {
+  font-weight: bold;
+}
+
 .blue {
   color: #4462b9;
 }
