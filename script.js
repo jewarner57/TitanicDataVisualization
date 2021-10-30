@@ -89,29 +89,31 @@ function displayData(passengerData) {
     titanic.appendChild(p)
   })
 
-  // Let's loop over each passenger and set some styles 
-  passengers.forEach((p, i) => {
-    const { fare, name, embarked, pclass, sex, survived, age } = passengerData[i].fields
-    // Southhampton (England), Cherbourg (France), Queenstown (Ireland)
-    const embarkedColorMap = { 'S': '#4462b9', 'C': '#F76C5E', 'Q': '#F4CC48' }
+  window.setTimeout(function () {
+    // Let's loop over each passenger and set some styles 
+    passengers.forEach((p, i) => {
+      const { fare, name, embarked, pclass, sex, survived, age } = passengerData[i].fields
+      // Southhampton (England), Cherbourg (France), Queenstown (Ireland)
+      const embarkedColorMap = { 'S': '#4462b9', 'C': '#F76C5E', 'Q': '#F4CC48' }
 
-    p.innerHTML = age < 1 ? "<1" : Math.round(age) || "-"
+      p.innerHTML = age < 1 ? "<1" : Math.round(age) || "-"
 
-    p.style.transition = 'all 10s ease'
-    p.style.margin = '0.5px'
-    p.style.width = '15px'
-    p.style.height = '15px'
-    p.style.fontSize = '14px'
-    p.style.backgroundColor = embarkedColorMap[embarked] || '#fff'
-    p.style.borderRadius = sex === 'male' ? '0' : '50%'
-    p.style.opacity = survived === 'Yes' ? '1' : '0.3'
-    p.style.textAlign = 'center'
-    p.style.padding = pclass === 1 ? '7px' : '9px'
-    p.style.border = pclass === 1 ? '2px solid black' : ''
+      p.style.margin = '0.5px'
+      p.style.width = '15px'
+      p.style.height = '15px'
+      p.style.fontSize = '14px'
+      p.style.backgroundColor = embarkedColorMap[embarked] || '#fff'
+      p.style.borderRadius = sex === 'male' ? '0' : '50%'
+      p.style.opacity = survived === 'Yes' ? '1' : '0.3'
+      p.style.textAlign = 'center'
+      p.style.padding = pclass === 1 ? '7px' : '9px'
+      p.style.border = pclass === 1 ? '2px solid black' : ''
+      p.style.zIndex = fare
 
 
-    p.passengerData = { fare, name, embarked, pclass, sex, survived, age }
-    p.addEventListener('click', displayPassengerData)
+      p.passengerData = { fare, name, embarked, pclass, sex, survived, age }
+      p.addEventListener('click', displayPassengerData)
+    }, 100);
   })
 }
 
@@ -161,6 +163,12 @@ function filterData(filterBy, data) {
       // Class top to bottom
       filteredData.sort((a, b) => {
         return Number(a.fields.pclass) - Number(b.fields.pclass)
+      })
+      break;
+    case 'name':
+      // Name, Alphabetical: A's at the top
+      filteredData.sort((a, b) => {
+        return a.fields.name.localeCompare(b.fields.name)
       })
       break;
     default:

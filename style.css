@@ -13,6 +13,10 @@ select {
   font-size: 1.1rem;
 }
 
+#titanic > div {
+  transition: color 0.3s linear;
+}
+
 .detailContainer {
   border: 2px solid black;
   padding: 0 10px 15px 10px;
